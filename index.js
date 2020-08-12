@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.static('public'))
 
-app.get('/', async (req, res) => {
+app.get('/api/article', async (req, res) => {
   const fullArticle = await getArticle();
 
   tg.sendPhoto(process.env.CHANNEL_ID, `https:${fullArticle.imageSrc}`);
