@@ -1,0 +1,29 @@
+{
+  "name": "Wiki-Featured-Article",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro-bot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniilosmolovskiy/Wiki-Featured-Article.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniilosmolovskiy/Wiki-Featured-Article/issues"
+  },
+  "homepage": "https://github.com/daniilosmolovskiy/Wiki-Featured-Article#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "micro-bot": "^2.5.3",
+    "nodemon": "^2.0.4",
+    "telegraf": "^3.38.0"
+  }
+}
