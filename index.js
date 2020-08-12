@@ -1,6 +1,8 @@
 const express = require('express');
 require('dotenv').config();
 
+const port = process.env.port || 3000;
+
 const { Composer } = require('micro-bot')
 
 // const tg = new Telegram(process.env.BOT_TOKEN)
@@ -26,6 +28,10 @@ app.get('/api/article', async (req, res) => {
   });
 
   res.json(fullArticle);
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
 })
 
 module.exports = tg;
