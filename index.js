@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 
-const port = process.env.port || 3000;
+const port = process.env.PORT;
 
 const { Composer } = require('micro-bot')
 
@@ -30,8 +30,11 @@ app.get('/api/article', async (req, res) => {
   res.json(fullArticle);
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.listen(port)
+
+app.post('/', (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
 
 module.exports = tg;
