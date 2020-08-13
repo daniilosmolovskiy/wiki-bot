@@ -15,17 +15,18 @@ const getArticle = require('./getArticle');
 // app.use(express.static('public'))
 
 // app.get('/api/article', async (req, res) => {
-//   const fullArticle = await getArticle();
+  const fullArticle = getArticle();
+  // const fullArticle = await getArticle();
 
 //   tg.sendPhoto(process.env.CHANNEL_ID, `https:${fullArticle.imageSrc}`);
 
-//   tg.sendMessage(process.env.CHANNEL_ID, fullArticle.text.join('\n \n').trim(), {
-//     reply_markup: {
-//       inline_keyboard: [
-//         [{ text: "Полная статья", url: `https://ru.wikipedia.org/${fullArticle.articleLink}` }]
-//       ]
-//     }
-//   });
+  tg.sendMessage(process.env.CHANNEL_ID, fullArticle.text.join('\n \n').trim(), {
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: "Полная статья", url: `https://ru.wikipedia.org/${fullArticle.articleLink}` }]
+      ]
+    }
+  });
 
 //   res.json(fullArticle);
 // })
@@ -36,9 +37,9 @@ const getArticle = require('./getArticle');
 //   bot.processUpdate(req.body);
 //   res.sendStatus(200);
 // });
-tg.start( ctx => {
-  ctx.reply('Bot working')
-})
+// tg.start( ctx => {
+//   ctx.reply('Bot working')
+// })
 
 
 module.exports = tg;
