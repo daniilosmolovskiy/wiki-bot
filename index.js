@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 
-// const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const { Composer } = require('micro-bot')
 
@@ -10,7 +10,11 @@ const { Composer } = require('micro-bot')
 const tg = new Composer;
 
 const getArticle = require('./getArticle');
-// const app = express();
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 // app.use(express.static('public'))
 
@@ -31,7 +35,9 @@ const getArticle = require('./getArticle');
 //   res.json(fullArticle);
 // })
 
-// app.listen(port)
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
 
 // app.post('/', (req, res) => {
 //   bot.processUpdate(req.body);
