@@ -5,23 +5,17 @@ const { Telegram } = require('telegraf');
 
 const port = process.env.PORT || 3000;
 
-// const { Composer } = require('micro-bot')
-
 const tg = new Telegram(process.env.BOT_TOKEN);
-
-// const tg = new Composer;
 
 const getArticle = require('./getArticle');
 const app = express();
 
-// app.use(express.static('public'))
-
 app.get('/', async (req, res) => {
   const fullArticle = await getArticle();
 
-  tg.sendPhoto(-1001342903377, `https:${fullArticle.imageSrc}`);
+  tg.sendPhoto(process.env.CHANNEL_ID, `https:${fullArticle.imageSrc}`);
 
-  tg.sendMessage(-1001342903377, fullArticle.text.join('\n \n').trim(), {
+  tg.sendMessage(process.env.CHANNEL_ID, fullArticle.text.join('\n \n').trim(), {
     reply_markup: {
       inline_keyboard: [
         [{ text: "Полная статья", url: `https://ru.wikipedia.org/${fullArticle.articleLink}` }]
@@ -29,17 +23,7 @@ app.get('/', async (req, res) => {
     }
   });
 
-  res.json(fullArticle);
+  res.send("Bot is working!");
 })
 
 app.listen(port)
-
-// app.post('/', (req, res) => {
-//   bot.processUpdate(req.body);
-//   res.sendStatus(200);
-// });
-// tg.start( ctx => {
-//   ctx.reply('Bot working')
-// })
-
-// module.exports = tg;
