@@ -1,51 +1,46 @@
 const express = require('express');
 require('dotenv').config();
 
-const port = process.env.PORT || 3000;
+const { Telegram } = require('telegraf');
 
-const { Composer } = require('micro-bot')
+// const port = process.env.PORT;
 
-// // const tg = new Telegram(process.env.BOT_TOKEN)
+// const { Composer } = require('micro-bot')
 
-const tg = new Composer;
+const tg = new Telegram(process.env.BOT_TOKEN);
 
-const getArticle = require('./getArticle');
-const app = express();
+// const tg = new Composer;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// const getArticle = require('./getArticle');
+// const app = express();
 
 // app.use(express.static('public'))
 
 // app.get('/api/article', async (req, res) => {
-  const fullArticle = getArticle();
-  // const fullArticle = await getArticle();
+//   const fullArticle = await getArticle();
 
 //   tg.sendPhoto(process.env.CHANNEL_ID, `https:${fullArticle.imageSrc}`);
 
-  tg.sendMessage(process.env.CHANNEL_ID, fullArticle.text.join('\n \n').trim(), {
-    reply_markup: {
-      inline_keyboard: [
-        [{ text: "Полная статья", url: `https://ru.wikipedia.org/${fullArticle.articleLink}` }]
-      ]
-    }
-  });
+//   tg.sendMessage(process.env.CHANNEL_ID, fullArticle.text.join('\n \n').trim(), {
+//     reply_markup: {
+//       inline_keyboard: [
+//         [{ text: "Полная статья", url: `https://ru.wikipedia.org/${fullArticle.articleLink}` }]
+//       ]
+//     }
+//   });
 
 //   res.json(fullArticle);
 // })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+// app.listen(port)
 
 // app.post('/', (req, res) => {
 //   bot.processUpdate(req.body);
 //   res.sendStatus(200);
 // });
-// tg.start( ctx => {
-//   ctx.reply('Bot working')
-// })
+tg.start( ctx => {
+  ctx.reply('Bot working')
+})
 
-
-module.exports = tg;
+tg.launch();
+// module.exports = tg;
