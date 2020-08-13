@@ -19,15 +19,24 @@ async function getArticle() {
   const image = article.find(".floatright").find("img").attr("src");
   fullArticle.imageSrc = image;
 
+  //get title
+  // const title = article.find("p").find("a").text();
+  //   fullArticle.text.push($elem.text().trim());
+
+    
+  //get link to full article
+  const link = article.find("p").find("a").attr("href");
+  fullArticle.articleLink = link;
+
+  const title = article.find("p").first().find("a").first().text();
+  fullArticle.text.push(`<b>${title}</b>`);
+
   //get text
   const text = article.find("p").each((i, elem) => {
     const $elem = $(elem);
     fullArticle.text.push($elem.text().trim());
   });
 
-  //get link to full article
-  const link = article.find("p").find("a").attr("href");
-  fullArticle.articleLink = link;
 
   return fullArticle;
 }
