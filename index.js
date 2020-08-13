@@ -1,15 +1,15 @@
 const express = require('express');
 require('dotenv').config();
 
-const { Telegram } = require('telegraf');
+// const { Telegram } = require('telegraf');
 
 // const port = process.env.PORT;
 
-// const { Composer } = require('micro-bot')
+const { Composer } = require('micro-bot')
 
-const tg = new Telegram(process.env.BOT_TOKEN);
+// const tg = new Telegram(process.env.BOT_TOKEN);
 
-// const tg = new Composer;
+const tg = new Composer;
 
 // const getArticle = require('./getArticle');
 // const app = express();
@@ -42,5 +42,4 @@ tg.start( ctx => {
   ctx.reply('Bot working')
 })
 
-tg.launch();
-// module.exports = tg;
+module.exports = tg;
