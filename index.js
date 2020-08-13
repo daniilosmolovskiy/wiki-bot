@@ -19,9 +19,9 @@ const app = express();
 app.get('/', async (req, res) => {
   const fullArticle = await getArticle();
 
-  tg.sendPhoto(process.env.CHANNEL_ID, `https:${fullArticle.imageSrc}`);
+  tg.sendPhoto(-1001342903377, `https:${fullArticle.imageSrc}`);
 
-  tg.sendMessage(process.env.CHANNEL_ID, fullArticle.text.join('\n \n').trim(), {
+  tg.sendMessage(-1001342903377, fullArticle.text.join('\n \n').trim(), {
     reply_markup: {
       inline_keyboard: [
         [{ text: "Полная статья", url: `https://ru.wikipedia.org/${fullArticle.articleLink}` }]
